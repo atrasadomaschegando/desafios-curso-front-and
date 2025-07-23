@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio  de logica de programacao</title>
+</head>
+<body>
+
+<script>
+
+
+    let distancia = parseFloat(prompt("Qual a distância da sua casa até seu trabalho (em km)?"));
+    while (isNaN(distancia)) {
+        distancia = parseFloat(prompt("Por favor, digite um número válido para a distância (km):"));
+    }
+
+    let consumoMedio = parseFloat(prompt("Qual o consumo médio do seu veículo (em km/L)?"));
+    while (isNaN(consumoMedio)) {
+        consumoMedio = parseFloat(prompt("Por favor, digite um número válido para o consumo médio (km/L):"));
+    }
+
+    
+    let consumoNecessarioLitros = distancia / consumoMedio;
+
+    
+    let qtdPostos = parseInt(prompt("Quantos postos você pesquisou?"));
+    while (isNaN(qtdPostos) || qtdPostos <= 0) {
+        qtdPostos = parseInt(prompt("Por favor, digite um número inteiro válido de postos pesquisados:"));
+    }
+
+    
+    let somaCombustivel = 0;
+    let menorValor = Infinity;
+
+    for (let i = 1; i <= qtdPostos; i++) {
+        let valor = parseFloat(prompt("Digite o valor do combustível (em R$) no posto " + i + ":"));
+
+        while (isNaN(valor)) {
+            valor = parseFloat(prompt("Por favor, digite um número válido para o valor no posto " + i + ":"));
+        }
+
+        somaCombustivel += valor;
+
+        if (valor < menorValor) {
+            menorValor = valor;
+        }
+    }
+
+    
+    let media = somaCombustivel / qtdPostos;
+
+    
+    let gastoDiario = 2 * consumoNecessarioLitros * menorValor;
+
+    
+    document.write(`<h3>O consumo necessário é ${consumoNecessarioLitros.toFixed(2)} litros</h3>`);
+    document.write(`<h3>O menor valor pesquisado é R$ ${menorValor.toFixed(2)}</h3>`);
+    document.write(`<h3>A média dos valores pesquisados é R$ ${media.toFixed(2)}</h3>`);
+    document.write(`<h3>O gasto diário (ida e volta) é R$ ${gastoDiario.toFixed(2)}</h3>`);
+</script>
+
+</body>
+</html>
